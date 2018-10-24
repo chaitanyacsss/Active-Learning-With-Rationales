@@ -306,7 +306,6 @@ public class ClassificationModel {
 	}
 
 	private static ArrayList<Classification> run_classifier_on_rest(InstanceList instances) {
-		// keep training and updating while there is budget left
 		ArrayList<Classification> classify_rest = trainer.getClassifier().classify(instances);
 		Collections.sort(classify_rest, new Comparator<Classification>() {
 
