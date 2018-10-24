@@ -127,7 +127,6 @@ public class ClassificationModelTest {
 			for (Double eachFactor : factorOfChange) {
 				assertEquals(0.1, eachFactor, delta);
 			}
-			assertTrue(factorOfChange.contains(0.1));
 
 		}
 
