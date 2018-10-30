@@ -119,13 +119,9 @@ public class ClassificationModel {
 		Map<Integer, String> positiveWordsMap = getSentimentWordList(completeAlphabet, POSITIVE_WORDS_TXT);
 		Map<Integer, String> negativeWordsMap = getSentimentWordList(completeAlphabet, NEGATIVE_WORDS_TXT);
 
-		Alphabet testAlphabet = instances.getAlphabet();
-		Map<Integer, String> testsetPositiveWordsMap = getSentimentWordList(testAlphabet, POSITIVE_WORDS_TXT);
-		Map<Integer, String> testsetNegativeWordsMap = getSentimentWordList(testAlphabet, NEGATIVE_WORDS_TXT);
-
 		// rFactor
 		setRFactor(instances, positiveWordsMap, negativeWordsMap);
-		setRFactor(testInstances, testsetPositiveWordsMap, testsetNegativeWordsMap);
+		setRFactor(testInstances, positiveWordsMap, negativeWordsMap);
 
 		LOGGER.info("Running initial train");
 		// train bootstrap
@@ -160,7 +156,6 @@ public class ClassificationModel {
 		trainer.setFeatureMultinomialEstimator(featureEstimator);
 		trainer.setPriorMultinomialEstimator(priorEstimator);
 		trainer.train(trainingBootstrap);
-
 
 		LOGGER.info("Accuracy on test data with the 10 initial training samples is : "
 				+ trainer.getClassifier().getAccuracy(testInstances));
